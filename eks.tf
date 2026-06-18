@@ -35,7 +35,6 @@ resource "aws_eks_cluster" "eks" {
 
   # IAM role EKS will use
   role_arn = aws_iam_role.eks.arn
-
   vpc_config {
 
     # API endpoint accessible from the internet
@@ -50,6 +49,10 @@ resource "aws_eks_cluster" "eks" {
       aws_subnet.private1.id,
       aws_subnet.private2.id
     ]
+  }
+
+  upgrade_policy {
+    support_type = "STANDARD"
   }
 
   access_config {
